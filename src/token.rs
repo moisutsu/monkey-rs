@@ -1,5 +1,5 @@
 #[derive(Debug, Clone)]
-enum Token {
+pub enum Token {
     Illegal,       // unknown token
     Eof,           // end of file
     Ident(String), // identifier
