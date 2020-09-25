@@ -1,3 +1,5 @@
+use crate::token::Token;
+
 #[derive(Debug, Default)]
 pub struct Lexer {
     input: String,
@@ -23,5 +25,21 @@ impl Lexer {
         }
         self.position = self.read_position;
         self.read_position += 1;
+    }
+    pub fn next_token(&mut self) -> Token {
+        let token = match self.ch {
+            Some('=') => Token::Assign,
+            Some(';') => Token::Semicolon,
+            Some('(') => Token::Lparen,
+            Some(')') => Token::Rparen,
+            Some(',') => Token::Comma,
+            Some('+') => Token::Plus,
+            Some('{') => Token::Lbrace,
+            Some('}') => Token::Rbrace,
+            None => Token::Eof,
+            _ => unreachable!(),
+        };
+        self.read_char();
+        token
     }
 }
