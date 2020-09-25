@@ -1,8 +1,8 @@
 #[derive(Debug, Default)]
 pub struct Lexer {
     input: String,
-    position: i32,
-    read_position: i32,
+    position: usize,
+    read_position: usize,
     ch: char,
 }
 
