@@ -8,10 +8,12 @@ pub struct Lexer {
 
 impl Lexer {
     pub fn new(input: String) -> Self {
-        Lexer {
+        let mut lexer = Lexer {
             input,
             ..Lexer::default()
-        }
+        };
+        lexer.read_char();
+        lexer
     }
     pub fn read_char(&mut self) {
         if self.read_position >= self.input.len() {
