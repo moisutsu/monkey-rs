@@ -18,6 +18,13 @@ pub enum Token {
     Rparen,        // )
     Lbrace,        // {
     Rbrace,        // }
+    Eq,            // ==
+    NotEq,         // !=
     Function,      // fn
     Let,           // let
+    True,          // true
+    False,         // false
+    If,            // if
+    Else,          // else
+    Return,        // return
 }
