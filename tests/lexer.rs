@@ -72,6 +72,7 @@ fn test_next_token() {
         Int(5),
         Lt,
         Int(10),
+        Rparen,
         Lbrace,
         Return,
         True,
