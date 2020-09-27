@@ -8,8 +8,11 @@ fn test_next_token() {
     let add = fn(x, y) {
         x + y;
     };
-    let result = add(five, ten);"
-        .to_string();
+    let result = add(five, ten);
+    !-/*5;
+    5 < 10 > 5;
+    "
+    .to_string();
     let answers = vec![
         Let,
         Ident("five".to_string()),
@@ -46,6 +49,18 @@ fn test_next_token() {
         Comma,
         Ident("ten".to_string()),
         Rparen,
+        Semicolon,
+        Bang,
+        Minus,
+        Slash,
+        Asterisk,
+        Int(5),
+        Semicolon,
+        Int(5),
+        Lt,
+        Int(10),
+        Gt,
+        Int(5),
         Semicolon,
         Eof,
     ];
