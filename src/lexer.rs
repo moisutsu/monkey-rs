@@ -31,6 +31,12 @@ impl Lexer {
         let token = match self.ch {
             Some('=') => Token::Assign,
             Some('+') => Token::Plus,
+            Some('-') => Token::Minus,
+            Some('!') => Token::Bang,
+            Some('*') => Token::Asterisk,
+            Some('/') => Token::Slash,
+            Some('<') => Token::Lt,
+            Some('>') => Token::Gt,
             Some(',') => Token::Comma,
             Some(';') => Token::Semicolon,
             Some('(') => Token::Lparen,
