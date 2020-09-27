@@ -123,6 +123,11 @@ fn ident_to_token(ident: String) -> Token {
     match &ident[..] {
         "fn" => Token::Function,
         "let" => Token::Let,
+        "true" => Token::True,
+        "false" => Token::False,
+        "if" => Token::If,
+        "else" => Token::Else,
+        "return" => Token::Return,
         _ => Token::Ident(ident),
     }
 }
