@@ -3,7 +3,7 @@ pub enum Token {
     Illegal,       // unknown token
     Eof,           // end of file
     Ident(String), // identifier
-    Int(i32),      // integer literal
+    Int(usize),    // integer literal
     Assign,        // =
     Plus,          // +
     Comma,         // ,

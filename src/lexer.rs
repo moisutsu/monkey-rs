@@ -67,7 +67,7 @@ impl Lexer {
             .iter()
             .collect()
     }
-    fn read_number(&mut self) -> i32 {
+    fn read_number(&mut self) -> usize {
         let position = self.position;
         while self.ch.map_or(false, |ch| ch.is_ascii_digit()) {
             self.read_char();
