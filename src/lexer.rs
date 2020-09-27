@@ -36,7 +36,7 @@ impl Lexer {
         lexer.read_char();
         lexer
     }
-    pub fn read_char(&mut self) {
+    fn read_char(&mut self) {
         if self.read_position >= self.input.len() {
             self.ch = None;
         } else {
