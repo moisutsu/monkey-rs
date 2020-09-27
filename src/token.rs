@@ -6,6 +6,12 @@ pub enum Token {
     Int(usize),    // integer literal
     Assign,        // =
     Plus,          // +
+    Minus,         // -
+    Bang,          // !
+    Asterisk,      // *
+    Slash,         // /
+    Lt,            // <
+    Gt,            // >
     Comma,         // ,
     Semicolon,     // ;
     Lparen,        // (
