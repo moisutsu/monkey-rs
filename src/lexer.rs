@@ -30,11 +30,11 @@ impl Lexer {
         self.skip_whitespace();
         let token = match self.ch {
             Some('=') => Token::Assign,
+            Some('+') => Token::Plus,
+            Some(',') => Token::Comma,
             Some(';') => Token::Semicolon,
             Some('(') => Token::Lparen,
             Some(')') => Token::Rparen,
-            Some(',') => Token::Comma,
-            Some('+') => Token::Plus,
             Some('{') => Token::Lbrace,
             Some('}') => Token::Rbrace,
             Some(ch) => {
