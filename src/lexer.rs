@@ -48,10 +48,26 @@ impl Lexer {
     pub fn next_token(&mut self) -> Token {
         self.skip_whitespace();
         let token = match self.ch {
-            Some('=') => Token::Assign,
+            Some('=') => {
+                if self.peek_char() == '=' {
+                    self.read_char();
+                    self.read_char();
+                    Token::Eq
+                } else {
+                    Token::Assign
+                }
+            }
             Some('+') => Token::Plus,
             Some('-') => Token::Minus,
-            Some('!') => Token::Bang,
+            Some('!') => {
+                if self.peek_char() == '=' {
+                    self.read_char();
+                    self.read_char();
+                    Token::NotEq
+                } else {
+                    Token::Bang
+                }
+            }
             Some('*') => Token::Asterisk,
             Some('/') => Token::Slash,
             Some('<') => Token::Lt,
@@ -105,6 +121,13 @@ impl Lexer {
     fn skip_whitespace(&mut self) {
         while self.ch.map_or(false, |ch| ch.is_ascii_whitespace()) {
             self.read_char()
+        }
+    }
+    fn peek_char(&self) -> char {
+        if self.read_position >= self.input.len() {
+            '\u{0}'
+        } else {
+            self.input.chars().nth(self.read_position).unwrap()
         }
     }
 }
