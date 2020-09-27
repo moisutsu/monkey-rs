@@ -11,6 +11,11 @@ fn test_next_token() {
     let result = add(five, ten);
     !-/*5;
     5 < 10 > 5;
+    if (5 < 10) {
+        return true;
+    } else {
+        return false;
+    }
     "
     .to_string();
     let answers = vec![
@@ -62,6 +67,22 @@ fn test_next_token() {
         Gt,
         Int(5),
         Semicolon,
+        If,
+        Lparen,
+        Int(5),
+        Lt,
+        Int(10),
+        Lbrace,
+        Return,
+        True,
+        Semicolon,
+        Rbrace,
+        Else,
+        Lbrace,
+        Return,
+        False,
+        Semicolon,
+        Rbrace,
         Eof,
     ];
     let mut lexer = Lexer::new(input);
