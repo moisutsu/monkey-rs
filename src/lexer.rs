@@ -1,5 +1,24 @@
 use crate::Token;
 
+static SINGLE_LETTER_TOKENS: [Token; 16] = [
+    Token::Illegal,
+    Token::Eof,
+    Token::Assign,
+    Token::Plus,
+    Token::Minus,
+    Token::Bang,
+    Token::Asterisk,
+    Token::Slash,
+    Token::Lt,
+    Token::Gt,
+    Token::Comma,
+    Token::Semicolon,
+    Token::Lparen,
+    Token::Rparen,
+    Token::Lbrace,
+    Token::Rbrace,
+];
+
 #[derive(Debug, Default)]
 pub struct Lexer {
     input: String,
@@ -56,11 +75,10 @@ impl Lexer {
             }
             None => Token::Eof,
         };
-        // Function, Let, Ident, Int already called `read_char`
-        match token {
-            Token::Function | Token::Let | Token::Ident(_) | Token::Int(_) => (),
-            _ => self.read_char(),
-        };
+        // If `token` is not a single letter token, `read_char` is already called
+        if SINGLE_LETTER_TOKENS.contains(&token) {
+            self.read_char();
+        }
         token
     }
     fn read_identifier(&mut self) -> String {
