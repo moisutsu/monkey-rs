@@ -16,6 +16,8 @@ fn test_next_token() {
     } else {
         return false;
     }
+    10 == 10;
+    10 != 9;
     "
     .to_string();
     let answers = vec![
@@ -84,6 +86,14 @@ fn test_next_token() {
         False,
         Semicolon,
         Rbrace,
+        Int(10),
+        Eq,
+        Int(10),
+        Semicolon,
+        Int(10),
+        NotEq,
+        Int(9),
+        Semicolon,
         Eof,
     ];
     let mut lexer = Lexer::new(input);
