@@ -1,3 +1,5 @@
+use crate::Token;
+
 trait Node {
     fn token_literal(&self) -> String;
 }
@@ -28,4 +30,50 @@ where
             "".to_string()
         }
     }
+}
+
+struct LetStatement<E>
+where
+    E: Node + Expression,
+{
+    token: Token, // Token::Let
+    name: Identifier,
+    value: E,
+}
+
+impl<E> Node for LetStatement<E>
+where
+    E: Node + Expression,
+{
+    fn token_literal(&self) -> String {
+        match self.token {
+            Token::Let => "let".to_string(),
+            _ => unreachable!(),
+        }
+    }
+}
+
+impl<E> Statement for LetStatement<E>
+where
+    E: Node + Expression,
+{
+    fn statement_node(&self) {}
+}
+
+struct Identifier {
+    token: Token, // Token::Ident
+    value: String,
+}
+
+impl Node for Identifier {
+    fn token_literal(&self) -> String {
+        match &self.token {
+            Token::Ident(ident) => ident.clone(),
+            _ => unreachable!(),
+        }
+    }
+}
+
+impl Expression for Identifier {
+    fn expression_node(&self) {}
 }
