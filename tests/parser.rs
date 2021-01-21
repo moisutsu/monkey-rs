@@ -1,5 +1,3 @@
-use std::process::exit;
-
 use monkey::{Identifier, Lexer, Parser, Statement};
 
 #[test]
@@ -22,30 +20,26 @@ fn test_let_statements() {
     let expected_idents = vec!["x", "y", "foobar"];
     for (i, &expected_ident) in expected_idents.iter().enumerate() {
         let statement = program.statements[i].clone();
-        assert!(test_let_statement(statement, expected_ident));
+        test_let_statement(statement, expected_ident);
     }
 }
 
-fn test_let_statement(statement: Statement, expected_ident: &str) -> bool {
+fn test_let_statement(statement: Statement, expected_ident: &str) {
     match &statement.token_literal()[..] {
         "let" => (),
         literal => {
-            eprintln!("Token literal is not 'let'. Got={}", literal);
-            return false;
+            panic!("Token literal is not 'let'. Got={}", literal);
         }
     }
     match statement {
         Statement::LetStatement(let_statement) => {
             let Identifier(name) = let_statement.name;
             if expected_ident != &name {
-                eprintln!("Identifier name is not '{}'. Got {}.", expected_ident, name);
-                return false;
+                panic!("Identifier name is not '{}'. Got {}.", expected_ident, name);
             }
         }
         _ => {
-            eprintln!("statement is not Statement::LetStatement");
-            return false;
+            panic!("statement is not Statement::LetStatement");
         }
     }
-    true
 }
