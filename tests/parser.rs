@@ -9,7 +9,7 @@ fn test_let_statements() {
     "
     .to_string();
     let lexer = Lexer::new(input);
-    let parser = Parser::new(lexer);
+    let mut parser = Parser::new(lexer);
 
     let program = parser.parse_program();
 

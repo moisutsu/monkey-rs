@@ -55,7 +55,7 @@ impl Expression {
 #[derive(Debug, Clone)]
 pub struct LetStatement {
     pub name: Identifier,
-    value: Expression,
+    pub value: Expression,
 }
 
 #[derive(Debug, Clone)]
